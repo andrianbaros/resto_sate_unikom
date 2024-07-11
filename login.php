@@ -27,13 +27,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 case 'cashier':
                     header("Location: cashier_dashboard.php");
                     break;
+                case 'manager': // Add redirection for manager role
+                    header("Location: manager_dashboard.php");
+                    break;
             }
             exit();
         } else {
-            echo "Password salah!";
+            echo "Incorrect password!";
         }
     } else {
-        echo "Username atau role salah!";
+        echo "Incorrect username or role!";
     }
 }
 ?>
@@ -43,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style/style.css" />
     <title>Login</title>
 </head>
 <body>
@@ -60,6 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="waiter">Waiter</label>
                 <input type="radio" id="cashier" name="role" value="cashier" required />
                 <label for="cashier">Cashier</label>
+                <input type="radio" id="manager" name="role" value="manager" required />
+                <label for="manager">Manager</label>
             </div>
             <button type="submit">Let's Work!</button>
         </form>

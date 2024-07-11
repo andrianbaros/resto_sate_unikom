@@ -14,8 +14,11 @@ function generate_id($role) {
         case 'cashier':
             $prefix = 'CA';
             break;
-        case 'admin': // tambahkan role admin dengan prefix AD
+        case 'admin':
             $prefix = 'AD';
+            break;
+        case 'manager': // Add manager role with prefix MA
+            $prefix = 'MA';
             break;
     }
     $sql = "SELECT MAX(CAST(SUBSTR(id, 3) AS UNSIGNED)) AS max_id FROM users WHERE role='$role'";
@@ -28,7 +31,7 @@ function generate_id($role) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $role = isset($_POST['role']) ? $_POST['role'] : 'admin'; // default role admin jika tidak ada yang dipilih
+    $role = isset($_POST['role']) ? $_POST['role'] : 'admin';
     $id = generate_id($role);
 
     // Hash the password
@@ -50,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style/style.css" />
     <title>Register</title>
 </head>
 <body>
@@ -67,6 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="waiter">Waiter</label>
                 <input type="radio" id="cashier" name="role" value="cashier" required />
                 <label for="cashier">Cashier</label>
+                <input type="radio" id="manager" name="role" value="manager" required />
+                <label for="manager">Manager</label>
             </div>
             <button type="submit">Register</button>
         </form>
