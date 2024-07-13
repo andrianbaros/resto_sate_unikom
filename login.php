@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $role = $_POST['role'];
 
-    // Prepare statement to prevent SQL injection
+
     $stmt = $conn->prepare("SELECT * FROM users WHERE username=? AND role=?");
     $stmt->bind_param("ss", $username, $role);
     $stmt->execute();
@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
+            $_SESSION['user_id'] = $row['id']; // nyimpen id(WAJIB)
             $_SESSION['role'] = $role;
             switch ($role) {
                 case 'chef':
@@ -27,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 case 'cashier':
                     header("Location: cashier_dashboard.php");
                     break;
-                case 'manager': // Add redirection for manager role
+                case 'manager':
                     header("Location: manager_dashboard.php");
                     break;
             }

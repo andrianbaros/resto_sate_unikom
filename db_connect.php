@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "root"; // ganti dengan username MySQL Anda
-$password = ""; // ganti dengan password MySQL Anda
+$username = "root"; 
+$password = ""; 
 $dbname = "resto_sate";
 
 // Membuat koneksi
