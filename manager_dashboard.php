@@ -110,7 +110,7 @@ $conn->close();
                 </tr>
             </table>
             </h1>
-            <h1>Right Side</h1>
+  
 
         </div>
 
