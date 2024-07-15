@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2024 at 07:41 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Jul 15, 2024 at 07:09 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,18 +31,18 @@ CREATE TABLE `users` (
   `id` varchar(10) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('chef','waiter','cashier','admin','manager') NOT NULL
+  `role` enum('chef','waiter','cashier','admin','manager') NOT NULL,
+  `picture` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
-('CH00001', 'chef', '$2y$10$lwb8H8JzIU0mzvEp/iMBoeZhKJQfl5jVBGPYLvIvECNLFgGs/J4Cm', 'chef'),
-('CH00002', 'ahmad', '$2y$10$Aqi3og1J11wjBK41X0kPiueqz2eQO3znMntpn9hGrMQJkqBuSZuuC', 'chef'),
-('MA00001', 'baros', '$2y$10$tgHyDwonM1l.RipkovM4O.FdRfH3Pd56xndWRB.tMJlEDtBF.0L8a', 'manager'),
-('MA00002', 'messi', '$2y$10$jVTUiyMGNi8PzC/qk/bcFu7cIY1.eoSBSkt3daVcEhDRnlaRKaLuG', 'manager');
+INSERT INTO `users` (`id`, `username`, `password`, `role`, `picture`) VALUES
+('CH00001', 'chef', '$2y$10$lwb8H8JzIU0mzvEp/iMBoeZhKJQfl5jVBGPYLvIvECNLFgGs/J4Cm', 'chef', ''),
+('MA00001', 'baros', '$2y$10$tgHyDwonM1l.RipkovM4O.FdRfH3Pd56xndWRB.tMJlEDtBF.0L8a', 'manager', 'image/user-img.jpeg'),
+('MA00002', 'bambang', '$2y$10$zzGUed1EfC/.8jVS3tPCHO3OxN9PfiEYLXO6WVR1zV3vUpZFhoFPW', 'manager', 'image/006cg0eegy1hqjvthp4u6j30u0140dos.jpg');
 
 --
 -- Indexes for dumped tables
