@@ -2,35 +2,40 @@
 session_start();
 include 'db_connect.php';
 
+// Check if the user is a manager
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'manager') {
     header("Location: login.php");
     exit();
 }
 
+// Check if user ID is set in session
 if (!isset($_SESSION['user_id'])) {
     die("User ID not set in session.");
 }
 
 $userId = $_SESSION['user_id']; // mengambil id
 
-
-$username = "default"; 
-
-$stmt = $conn->prepare("SELECT username FROM users WHERE id = ?");
+// Prepare and execute query to get user data
+$sql = "SELECT username, role, picture FROM users WHERE id = ?";
+$stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $userId);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $username = $row["username"];
-    }
+    $row = $result->fetch_assoc();
+    $username = $row['username'];
+    $role = ucfirst($row['role']); // Capitalize the first letter of the role
+    $picture = $row['picture'];
 } else {
-    echo "0 results";
+    echo "User not found.";
+    exit();
 }
+
 $stmt->close();
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>

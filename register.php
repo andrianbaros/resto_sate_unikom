@@ -17,7 +17,7 @@ function generate_id($role) {
         case 'admin':
             $prefix = 'AD';
             break;
-        case 'manager': // Add manager role with prefix MA
+        case 'manager':
             $prefix = 'MA';
             break;
     }
@@ -34,16 +34,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = isset($_POST['role']) ? $_POST['role'] : 'admin';
     $id = generate_id($role);
 
-    // Hash the password
+    // hashing password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (id, username, password, role) VALUES ('$id', '$username', '$hashed_password', '$role')";
 
-    if ($conn->query($sql) === TRUE) {
-        header("Location: login.php");
-        exit();
+    $target_dir = "image/";
+    $target_file = $target_dir . basename($_FILES["picture"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    // memeriksa apakah berupa gambar asli atau palsu
+    if(isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["picture"]["tmp_name"]);
+        if($check !== false) {
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+
+    // memeriksa apakah file sudah ada atau belum
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+
+    // Memeriksa ukuran file
+    if ($_FILES["picture"]["size"] > 500000) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+
+    // memasukkan sesuai format
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+
+    
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        if (move_uploaded_file($_FILES["picture"]["tmp_name"], $target_file)) {
+            // File is uploaded, now insert user data into the database
+            $sql = "INSERT INTO users (id, username, password, role, picture) VALUES ('$id', '$username', '$hashed_password', '$role', '$target_file')";
+
+            if ($conn->query($sql) === TRUE) {
+                header("Location: login.php");
+                exit();
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
     }
 }
 ?>
@@ -59,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <h2>Register</h2>
-        <form id="registerForm" action="register.php" method="post">
+        <form id="registerForm" action="register.php" method="post" enctype="multipart/form-data">
             <input type="text" placeholder="Username" name="username" required />
             <input type="password" placeholder="Password" name="password" required />
             <div style="display: flex; align-items: center; margin-top: 5px">
@@ -73,6 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="radio" id="manager" name="role" value="manager" required />
                 <label for="manager">Manager</label>
             </div>
+            <input type="file" name="picture" id="picture" required />
             <button type="submit">Register</button>
         </form>
     </div>
