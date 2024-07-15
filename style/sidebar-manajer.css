@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .user-img {
@@ -17,11 +17,15 @@
   left: 0;
   height: 100vh;
   width: 80px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: #e7e1d5;
   color: #000000;
   padding: 0.4rem 0.8rem;
   transition: all 0.5s ease;
+}
+
+.word-wrap {
+  word-wrap: break-word; /* or you can use: word-break: break-all; */
 }
 
 .sidebar.active ~ .main-content {
@@ -147,13 +151,17 @@
   background-color: #eee;
   top: 0;
   left: 80px;
-   /*min-width: 100vh;
+  min-width: 100vh;
   transition: all 0.5s ease;
   width: calc(100% - 80px);
-  padding: 1rem;*/
+  padding: 1rem;
 }
 
 .container {
   display: flex;
   justify-content: space-between;
+}
+
+.main-content .container .h1 {
+  font-weight: 100;
 }

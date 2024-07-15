@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header("Location: cashier_dashboard.php");
                     break;
                 case 'manager':
-                    header("Location: manager_dashboard.php");
+                    header("Location:sidebar_manajer.php");
                     break;
             }
             exit();

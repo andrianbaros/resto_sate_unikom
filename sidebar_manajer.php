@@ -44,7 +44,8 @@ $conn->close();
         <div class="top">
             <div class="logo">
                 <i class="bx bxl-codepen"></i>
-                <span>Resto Sate</span>
+                <span class="word-wrap" style= "word-wrap: break-word;">Resto Sate</span>
+                
             </div>
             <i class="bx bx-menu" id="btn"></i>
         </div>
@@ -63,7 +64,7 @@ $conn->close();
                 <span class="tooltip">Profile</span>
             </li>
             <li>
-                <a href="#">
+                <a href="?q=dashboard">
                     <i class="bx bx-line-chart"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
@@ -77,7 +78,7 @@ $conn->close();
                 <span class="tooltip">Menu</span>
             </li>
             <li>
-                <a href="#">
+                <a href="?q=stock">
                     <i class="bx bx-fridge"></i>
                     <span class="nav-item">Stock</span>
                 </a>
@@ -94,29 +95,28 @@ $conn->close();
     </div>
 
     <div class="main-content">
-        <div class="container">
-            <table border="0">
-                <tr>
-                    <td rowspan="2"><h1>
-                    <img src="image/user-img.jpeg" alt="me" class="user-img">
-                    </td>
-                    <td><h1>Hello <?php echo htmlspecialchars($username); ?><hr>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                    <h3>Manager</h3>
-                    </td>
-                </tr>
-            </table>
-            </h1>
-  
+        <?php
+        $q = isset($_GET['q']) ? $_GET['q'] : '';
+            switch($q) {
+                case "":
+                    include "dashboard_manajer.php";
+                    break;
+                case "dashboard":
+                    include "dashboard_manajer.php";
+                    break;
+                case "stock":
+                    include "dashboard_manajer.php";
+                    break;
+                // Anda dapat menambahkan case lain di sini jika diperlukan
+                default:
+                    // Opsi default jika 'q' tidak cocok dengan case manapun
+                    echo "Halaman tidak ditemukan.";
+                    break;
+            }
+        ?>
 
-        </div>
 
-
-
-        <div>
+        
     </div>
 </body>
 <script>
