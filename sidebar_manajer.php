@@ -62,7 +62,7 @@ $conn->close();
         </div>
         <ul>
             <li>
-                <a href="#">
+                <a href="?q=profile">
                     <i class="bx bx-user"></i>
                     <span class="nav-item">Profile</span>
                 </a>
@@ -105,6 +105,9 @@ $conn->close();
             switch($q) {
                 case "":
                     include "dashboard_manajer.php";
+                    break;
+                case "profile":
+                    include "profile_manajer.php";
                     break;
                 case "dashboard":
                     include "dashboard_manajer.php";
