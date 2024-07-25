@@ -76,7 +76,7 @@ $conn->close();
                 <span class="tooltip">Dashboard</span>
             </li>
             <li>
-                <a href="#">
+                <a href="?q=menu">
                     <i class="bx bx-food-menu"></i>
                     <span class="nav-item">Menu</span>
                 </a>
@@ -90,7 +90,7 @@ $conn->close();
                 <span class="tooltip">Stock</span>
             </li>
             <li>
-                <a href="#">
+                <a href="?q=manage">
                     <i class="bx bxs-group"></i>
                     <span class="nav-item">Manage Employees</span>
                 </a>
@@ -109,11 +109,14 @@ $conn->close();
                 case "profile":
                     include "profile_manajer.php";
                     break;
+                case "menu":
+                    include "menu_manajer.php";
+                    break;
                 case "dashboard":
                     include "dashboard_manajer.php";
                     break;
                 case "stock":
-                    include "dashboard_manajer.php";
+                    include "stock_manajer.php";
                     break;
                 // Anda dapat menambahkan case lain di sini jika diperlukan
                 default:
