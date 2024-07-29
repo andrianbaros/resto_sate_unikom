@@ -15,9 +15,9 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = htmlspecialchars($_POST['ingredient_id']);
-    $quantity = htmlspecialchars($_POST['quantity']);
+    $quantity = htmlspecialchars($_POST['stock']);
 
-    $sql = "UPDATE ingredients SET quantity=? WHERE id=?";
+    $sql = "UPDATE ingredients SET stock=? WHERE id=?";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("si", $quantity, $id);

@@ -78,8 +78,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="quantity">Quantity</label>
-                <input type="text" class="form-control" id="quantity" name="quantity" required>
+                <label for="stock">stock</label>
+                <input type="text" class="form-control" id="stock" name="stock" required>
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
