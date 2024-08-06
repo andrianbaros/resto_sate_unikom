@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.4.28-MariaDB - mariadb.org binary distribution
+-- Server version:               10.4.32-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win64
--- HeidiSQL Version:             12.5.0.6677
+-- HeidiSQL Version:             12.8.0.6908
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `ingredients` (
 INSERT INTO `ingredients` (`id`, `name`, `stock`) VALUES
 	(1, 'kol', '5'),
 	(2, 'cabe', '20'),
-	(3, 'tahu', ''),
+	(3, 'tahu', '60'),
 	(23, 'garlic', ''),
 	(24, 'Nasi', '10'),
 	(25, 'Ayam', '2'),
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table resto_sate.menu_items: ~1 rows (approximately)
+-- Dumping data for table resto_sate.menu_items: ~0 rows (approximately)
 INSERT INTO `menu_items` (`id`, `name`, `price`) VALUES
 	(1, 'ayam goreng', 20000.00);
 
@@ -58,10 +58,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table resto_sate.orders: ~2 rows (approximately)
-INSERT INTO `orders` (`id`, `table_id`, `created_at`, `status`) VALUES
-	(1, 1, '2024-07-29 04:28:02', 'pending'),
-	(2, 0, '2024-07-29 04:30:25', 'pending');
+-- Dumping data for table resto_sate.orders: ~0 rows (approximately)
 
 -- Dumping structure for table resto_sate.order_items
 CREATE TABLE IF NOT EXISTS `order_items` (
@@ -85,16 +82,12 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   `image` varchar(255) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table resto_sate.recipes: ~6 rows (approximately)
+-- Dumping data for table resto_sate.recipes: ~2 rows (approximately)
 INSERT INTO `recipes` (`id`, `name`, `image`, `price`) VALUES
-	(1, 'Nasi Padang', 'images/nasipadang.png', 6000),
-	(2, 'Ayam Goreng', 'images/ayamgoreng.png', 6000),
-	(3, 'Ayam Goreng', 'images/ayamgoreng.png', 5600),
-	(4, 'Ayam Goreng', 'images/ayamgoreng.png', 60),
-	(5, 'Ayam Goreng', 'images/ayamgoreng.png', 60),
-	(6, 'Ayam Goreng', 'images/ayamgoreng.png', 60);
+	(1, 'Nasi Padang', 'images/nasipadang.png', 50000),
+	(2, 'Ayam Goreng', 'images/ayamgoreng.png', 50000);
 
 -- Dumping structure for table resto_sate.recipe_ingredients
 CREATE TABLE IF NOT EXISTS `recipe_ingredients` (
@@ -110,8 +103,8 @@ CREATE TABLE IF NOT EXISTS `recipe_ingredients` (
 -- Dumping data for table resto_sate.recipe_ingredients: ~4 rows (approximately)
 INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `quantity`) VALUES
 	(1, 1, 3),
-	(1, 2, 58),
-	(1, 3, 1),
+	(1, 2, 2),
+	(1, 3, 6),
 	(2, 26, 1);
 
 -- Dumping structure for table resto_sate.tables
@@ -143,7 +136,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `picture`) VALUES
 	('CH00001', 'chef', '$2y$10$lwb8H8JzIU0mzvEp/iMBoeZhKJQfl5jVBGPYLvIvECNLFgGs/J4Cm', 'chef', ''),
 	('MA00001', 'baros', '$2y$10$tgHyDwonM1l.RipkovM4O.FdRfH3Pd56xndWRB.tMJlEDtBF.0L8a', 'manager', 'image/user-img.jpeg'),
-	('MA00002', 'bambang', '$2y$10$zzGUed1EfC/.8jVS3tPCHO3OxN9PfiEYLXO6WVR1zV3vUpZFhoFPW', 'manager', 'image/006cg0eegy1hqjvthp4u6j30u0140dos.jpg');
+	('MA00002', 'bambang', '$2y$10$zzGUed1EfC/.8jVS3tPCHO3OxN9PfiEYLXO6WVR1zV3vUpZFhoFPW', 'manager', 'image/006cg0eegy1hqjvthp4u6j30u0140dos.jpg'),
+	('MA00003', 'daapinn', '$2y$10$M2E/lmL5FVNaTpvByQunqOjCAo3O.KeMmMRdh2P.HHPw838d1Mtai', 'manager', 'image/9eefd3badd2079f0b2ede810f8d5d677.png');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
