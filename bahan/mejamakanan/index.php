@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Table Layout</title>
     <style>
+        <?php
+        echo "
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -28,16 +30,23 @@
             width: 150px;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .table:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         .table-number {
-            font-size: 1.2em;
+            font-size: 1.5em;
             font-weight: bold;
+            margin-bottom: 10px;
         }
         .table-capacity {
             color: #555;
+            margin-bottom: 10px;
         }
         .table-status {
-            margin-top: 10px;
             padding: 5px;
             border-radius: 5px;
         }
@@ -49,6 +58,8 @@
             background-color: #f8d7da;
             color: #721c24;
         }
+        ";
+        ?>
     </style>
 </head>
 <body>
@@ -78,7 +89,7 @@
                     </div>";
             }
         } else {
-            echo "0 results";
+            echo "No tables available.";
         }
         $conn->close();
         ?>
