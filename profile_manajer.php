@@ -1,6 +1,9 @@
 <?php
 
 include 'db_connect.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+} // Ensure session is started
 
 // Check if the user is a manager
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'manager') {
@@ -24,11 +27,8 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $id = $row['id'];
     $username = $row['username'];
-    $role = ucfirst($row['role']); // Capitalize the first letter of the role
     $picture = $row['picture'];
-    $hashed_password = $row['password']; // Get hashed password
 } else {
     echo "User not found.";
     exit();
@@ -38,20 +38,20 @@ $stmt->close();
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $new_username = isset($_POST['username']) ? $conn->real_escape_string($_POST['username']) : '';
+    $new_username = isset($_POST['username']) ? $conn->real_escape_string($_POST['username']) : $username;
     $new_password = isset($_POST['password']) ? $_POST['password'] : '';
 
     $target_dir = "image/";
-    $target_file = $target_dir . basename($_FILES["picture"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $picture = $row['picture']; // Keep existing picture by default
 
-    // Check if file is an image
     if (isset($_FILES["picture"]) && $_FILES["picture"]["tmp_name"]) {
+        $target_file = $target_dir . basename($_FILES["picture"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Check if file is an image
         $check = getimagesize($_FILES["picture"]["tmp_name"]);
-        if ($check !== false) {
-            $uploadOk = 1;
-        } else {
+        if ($check === false) {
             echo "File is not an image.";
             $uploadOk = 0;
         }
@@ -63,17 +63,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Allow certain file formats
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
         }
 
+        // Try to upload file if validation is successful
         if ($uploadOk == 1) {
             if (move_uploaded_file($_FILES["picture"]["tmp_name"], $target_file)) {
-                $picture = $target_file;
+                $picture = $target_file; // Update picture path if file is uploaded
             } else {
                 echo "Sorry, there was an error uploading your file.";
-                $uploadOk = 0;
             }
         }
     }
@@ -81,18 +81,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Update user data in database
     if (!empty($new_password)) {
         $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-        $sql = "UPDATE users SET username='$new_username', password='$hashed_password', picture='$picture' WHERE id='$userId'";
+        $sql = "UPDATE users SET username=?, password=?, picture=? WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssss", $new_username, $hashed_password, $picture, $userId);
     } else {
-        $sql = "UPDATE users SET username='$new_username', picture='$picture' WHERE id='$userId'";
+        $sql = "UPDATE users SET username=?, picture=? WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $new_username, $picture, $userId);
     }
 
-    if ($conn->query($sql) === TRUE) {
-        header("Location: profile_manajer.php"); // Refresh page to show updated data
+    if ($stmt->execute()) {
+        header("Location: sidebar_manajer.php?q=profile"); // Refresh page to show updated data
         exit();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $stmt->error;
     }
 
+    $stmt->close();
     $conn->close();
 }
 ?>
@@ -115,8 +120,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         .password-container .toggle-btn {
             position: absolute;
-            right: 60px;
-            top: 70%;
+            right: 50px;
+            top: 75%;
             transform: translateY(-50%);
             border: none;
             background: none;
