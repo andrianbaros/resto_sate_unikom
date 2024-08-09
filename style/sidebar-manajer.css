@@ -8,7 +8,7 @@
 .user-img {
   width: 50px;
   height: 50px;
-  object-fit:cover;
+  object-fit: cover;
 
   border-radius: 100%;
   border: 1px solid #eee;
@@ -168,5 +168,3 @@
 .main-content .container .h1 {
   font-weight: 100;
 }
-
-

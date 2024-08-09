@@ -1,0 +1,121 @@
+/* Reset some basic styles */
+body,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #444;
+  font-size: 24px;
+  text-align: center;
+}
+
+#employeeForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#employeeForm input[type="text"],
+#employeeForm input[type="password"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+#employeeForm div {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+#employeeForm label {
+  font-size: 16px;
+  color: #555;
+}
+
+#employeeForm button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d5b982;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+#employeeForm button:hover {
+  background-color: #e0ceab;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+table button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #d5b982;
+  color: #fff;
+  cursor: pointer;
+}
+
+table button:hover {
+  background-color: #e0ceab;
+}
+form#employeeForm {
+  margin-bottom: 30px; /* Tambahkan margin bawah */
+}
+.clearfix {
+  clear: both;
+}
