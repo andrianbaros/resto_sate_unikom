@@ -92,7 +92,14 @@ $conn->close();
             <li>
                 <a href="?q=manage">
                     <i class="bx bxs-group"></i>
-                    <span class="nav-item">Manage Employees</span>
+                    <span class="nav-item">Manage</span>
+                </a>
+                <span class="tooltip">Manage Employees</span>
+            </li>
+             <li>
+                <a href="logout.php">
+                    <i class="bx bx-log-out"></i>
+                    <span class="nav-item">Logout</span>
                 </a>
                 <span class="tooltip">Manage Employees</span>
             </li>

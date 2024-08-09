@@ -19,7 +19,7 @@ body {
 
 .profile-picture img {
   border-radius: 50%;
-  border: 3px solid #007bff;
+  border: 3px solid #d5b982;
 }
 
 .profile-details {
@@ -32,8 +32,8 @@ body {
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #d5b982;
+  border-color: #d5b982;
   color: #fff;
 }
 

@@ -153,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="password" name="password" id="password" class="form-control" placeholder="Leave blank to keep unchanged">
                         <button type="button" class="toggle-btn" id="togglePassword">Show</button>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                    <button type="submit" class="btn btn-warning mt-3">Save Changes</button>
                 </div>
             </form>
         </div>
