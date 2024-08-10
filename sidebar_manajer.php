@@ -70,7 +70,7 @@ $conn->close();
             </li>
             <li>
                 <a href="?q=dashboard">
-                    <i class="bx bx-line-chart"></i>
+                    <i class="bx bx-pie-chart"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
                 <span class="tooltip">Dashboard</span>

@@ -70,7 +70,7 @@ $conn->close();
             </li>
             <li>
                 <a href="?q=order">
-                    <i class="bx bx-line-chart"></i>
+                    <i class="bx bx-cart"></i>
                     <span class="nav-item">Order</span>
                 </a>
                 <span class="tooltip">Order</span>

@@ -3,10 +3,8 @@
 include 'db_connect.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-} // Ensure session is started
-
-// Check if the user is a manager
-if (!isset($_SESSION['role']) || $_SESSION['role'] != 'waiter') {
+} // Ensure session is started]
+if (!isset($_SESSION['role']) || $_SESSION['role'] != 'chef') {
     header("Location: login.php");
     exit();
 }
@@ -91,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($stmt->execute()) {
-        header("Location: sidebar_manajer.php?q=profile"); // Refresh page to show updated data
+        header("Location: sidebar_chef.php?q=profile"); // Refresh page to show updated data
         exit();
     } else {
         echo "Error: " . $stmt->error;
@@ -107,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manager Profile</title>
+    <title>Chef Profile</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/manage.css">
     <style>

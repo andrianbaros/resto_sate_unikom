@@ -57,7 +57,7 @@ $conn->close();
         <div class="user">
             <div>
                 <p class="bold"><?php echo htmlspecialchars($username); ?></p>
-                <p>as Manajer</p>
+                <p>as Chef</p>
             </div>  
         </div>
         <ul>

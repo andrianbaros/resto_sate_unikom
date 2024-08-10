@@ -78,20 +78,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pesan'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CAFE DEV</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="style/manage.css"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
         .container {
-            width: 720px;
+            max-width: 720px;
         }
-        .row>* {
-            padding-right: 0;
+        .mb-2 {
+            margin-bottom: 0.75rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .border-warning {
+            border-color: #ffc107 !important;
+        }
+        .bg-warning {
+            background-color: #ffc107 !important;
         }
     </style>
 </head>
 <body>
     <div class="container bg-body-tertiary">
-        <form class="row g-3 needs-validation border border-warning rounded mt-5 p-3" method="POST" action="">
-            <div class="text-center bg-warning">
+        <form class="border border-warning rounded mt-5 p-4" method="POST" action="">
+            <div class="text-center bg-warning p-2 mb-4">
                 <h2>CAFE MENU</h2>
             </div>
 
@@ -108,82 +119,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pesan'])) {
             $result_minuman = $conn->query($sql_minuman);
             ?>
 
-            <div class="row mt-4">
-                <div class="col">
-                    <label for="meja" class="form-label">Pilih Meja</label>
-                    <select class="form-select" id="meja" name="meja">
-                        <option value="" selected>Pilih Meja</option>
-                        <?php
-                        if ($result_tables->num_rows > 0) {
-                            while($row = $result_tables->fetch_assoc()) {
-                                echo "<option value='{$row['id']}'>Meja {$row['table_number']} - Kapasitas {$row['capacity']}</option>";
-                            }
-                        } else {
-                            echo "<option value='' disabled>Tidak ada meja yang tersedia</option>";
+            <div class="form-group">
+                <label for="meja" class="form-label">Pilih Meja</label>
+                <select class="form-select" id="meja" name="meja">
+                    <option value="" selected>Pilih Meja</option>
+                    <?php
+                    if ($result_tables->num_rows > 0) {
+                        while($row = $result_tables->fetch_assoc()) {
+                            echo "<option value='{$row['id']}'>Meja {$row['table_number']} - Kapasitas {$row['capacity']}</option>";
                         }
-                        ?>
-                    </select>
-                </div>
+                    } else {
+                        echo "<option value='' disabled>Tidak ada meja yang tersedia</option>";
+                    }
+                    ?>
+                </select>
             </div>
 
-            <div class="row mt-4">
-                <div class="col">
-                    <label for="namaMakanan" class="form-label">Nama Makanan</label>
-                    <div id="makananContainer">
-                        <?php
-                        if ($result_makanan->num_rows > 0) {
-                            while($row = $result_makanan->fetch_assoc()) {
-                                echo "
-                                    <div class='row mb-2'>
-                                        <div class='col'>
-                                            <input type='checkbox' id='makanan{$row['id']}' name='makanan[]' value='{$row['id']}' data-harga='{$row['price']}'>
-                                            <label for='makanan{$row['id']}'>{$row['name']}</label>
-                                        </div>
-                                        <div class='col'>
-                                            <input type='number' class='form-control' id='porsiMakanan{$row['id']}' name='porsiMakanan[{$row['id']}]' min='1' value='1' disabled>
-                                        </div>
-                                    </div>";
-                            }
+            <div class="form-group">
+                <label for="namaMakanan" class="form-label">Nama Makanan</label>
+                <div id="makananContainer">
+                    <?php
+                    if ($result_makanan->num_rows > 0) {
+                        while($row = $result_makanan->fetch_assoc()) {
+                            echo "
+                                <div class='row mb-2'>
+                                    <div class='col-8'>
+                                        <input type='checkbox' id='makanan{$row['id']}' name='makanan[]' value='{$row['id']}' data-harga='{$row['price']}'>
+                                        <label for='makanan{$row['id']}'>{$row['name']}</label>
+                                    </div>
+                                    <div class='col-4'>
+                                        <input type='number' class='form-control' id='porsiMakanan{$row['id']}' name='porsiMakanan[{$row['id']}]' min='1' value='1' disabled>
+                                    </div>
+                                </div>";
                         }
-                        ?>
-                    </div>
+                    }
+                    ?>
                 </div>
             </div>
 
-            <div class="row mt-3">
-                <div class="col">
-                    <label for="namaMinuman" class="form-label">Nama Minuman</label>
-                    <div id="minumanContainer">
-                        <?php
-                        if ($result_minuman->num_rows > 0) {
-                            while($row = $result_minuman->fetch_assoc()) {
-                                echo "
-                                    <div class='row mb-2'>
-                                        <div class='col'>
-                                            <input type='checkbox' id='minuman{$row['id']}' name='minuman[]' value='{$row['id']}' data-harga='{$row['price']}'>
-                                            <label for='minuman{$row['id']}'>{$row['name']}</label>
-                                        </div>
-                                        <div class='col'>
-                                            <input type='number' class='form-control' id='porsiMinuman{$row['id']}' name='porsiMinuman[{$row['id']}]' min='1' value='1' disabled>
-                                        </div>
-                                    </div>";
-                            }
+            <div class="form-group">
+                <label for="namaMinuman" class="form-label">Nama Minuman</label>
+                <div id="minumanContainer">
+                    <?php
+                    if ($result_minuman->num_rows > 0) {
+                        while($row = $result_minuman->fetch_assoc()) {
+                            echo "
+                                <div class='row mb-2'>
+                                    <div class='col-8'>
+                                        <input type='checkbox' id='minuman{$row['id']}' name='minuman[]' value='{$row['id']}' data-harga='{$row['price']}'>
+                                        <label for='minuman{$row['id']}'>{$row['name']}</label>
+                                    </div>
+                                    <div class='col-4'>
+                                        <input type='number' class='form-control' id='porsiMinuman{$row['id']}' name='porsiMinuman[{$row['id']}]' min='1' value='1' disabled>
+                                    </div>
+                                </div>";
                         }
-                        ?>
-                    </div>
+                    }
+                    ?>
                 </div>
             </div>
 
-            <div class="row mt-5">
-                <div class="col text-center">
-                    <button type="submit" class="btn btn-warning w-25" name="pesan">Pesan</button>
-                </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-warning w-50" name="pesan">Pesan</button>
             </div>
 
-            <div class="row mt-4">
-                <div class="row">
-                    <span class="text-center" id="totalBelanja">Total Belanja: Rp. 0</span>
-                </div>
+            <div class="text-center mt-4">
+                <span id="totalBelanja" class="font-weight-bold">Total Belanja: Rp. 0</span>
             </div>
 
         </form>
@@ -194,29 +195,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pesan'])) {
             let total = 0;
             document.querySelectorAll('input[type="checkbox"]:checked').forEach(function(checkbox) {
                 const porsiInput = document.getElementById(checkbox.id.replace('makanan', 'porsiMakanan').replace('minuman', 'porsiMinuman'));
-                const harga = parseInt(checkbox.getAttribute('data-harga'));
-                const porsi = parseInt(porsiInput.value);
-                total += harga * porsi;
+                const harga = parseInt(checkbox.getAttribute('data-harga')) * parseInt(porsiInput.value);
+                total += harga;
             });
-            total += total * 0.11; // Tambahkan PPN 11%
-            document.getElementById('totalBelanja').textContent = `Total Belanja: Rp. ${total.toLocaleString()}`;
+            document.getElementById('totalBelanja').textContent = 'Total Belanja: Rp. ' + total;
         }
-
-        document.querySelectorAll('input[type="checkbox"], input[type="number"]').forEach(function(input) {
-            input.addEventListener('change', updateTotalBelanja);
-            input.addEventListener('input', updateTotalBelanja);
-        });
 
         document.querySelectorAll('input[type="checkbox"]').forEach(function(checkbox) {
             checkbox.addEventListener('change', function() {
-                const inputId = this.id.replace('makanan', 'porsiMakanan').replace('minuman', 'porsiMinuman');
-                const inputElement = document.getElementById(inputId);
-                if (this.checked) {
-                    inputElement.removeAttribute('disabled');
-                } else {
-                    inputElement.setAttribute('disabled', 'disabled');
-                }
+                const porsiInput = document.getElementById(this.id.replace('makanan', 'porsiMakanan').replace('minuman', 'porsiMinuman'));
+                porsiInput.disabled = !this.checked;
+                if (!this.checked) porsiInput.value = 1;
+                updateTotalBelanja();
             });
+        });
+
+        document.querySelectorAll('input[type="number"]').forEach(function(input) {
+            input.addEventListener('change', updateTotalBelanja);
         });
     </script>
 </body>

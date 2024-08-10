@@ -4,35 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Ingredients</title>
+    <link rel="stylesheet" href="style/manage.css"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style/manage.css"> <!-- Add your CSS file for consistent styling -->
+    
 </head>
 <body>
-    <!-- Top Section: Profile Information -->
-    <div class="container mt-5">
-        <div>
-            <table border="0">
-                <tr>
-                    <td rowspan="2">
-                        <h1>
-                            <img src="<?php echo htmlspecialchars($picture); ?>" alt="Profile Picture" class="user-img">
-                        </h1>
-                    </td>
-                    <td>
-                        <h1>Hello <?php echo htmlspecialchars($username); ?>
-                            <hr>
-                        </h1>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        <h3><?php echo htmlspecialchars($role); ?></h3>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
+   
     <!-- Bottom Section: Manage Ingredients -->
     <div class="container mt-5">
          <table class="table table-bordered">

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    
+    <link rel="stylesheet" href="style/manage.css"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Makanan</title>
@@ -36,10 +40,6 @@
 <body>
     <center>
     <h1>Daftar Makanan</h1>
-    <form method="GET" action="">
-        <input type="text" name="search" placeholder="Cari makanan...">
-        <button type="submit">Cari</button>
-    </form>
     <div class="food-container">
     <?php
     // Koneksi ke database
