@@ -116,11 +116,9 @@ $conn->close();
                     include "orderlist_chef.php";
                     break;
                 case "stock":
-                    include "stock_manajer.php";
+                    include "stock_chef.php";
                     break;
-                case "manage":
-                    include "manage_employees.php";
-                    break;
+
                 // Anda dapat menambahkan case lain di sini jika diperlukan
                 default:
                     // Opsi default jika 'q' tidak cocok dengan case manapun
