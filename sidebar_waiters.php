@@ -111,7 +111,7 @@ $conn->close();
         $q = isset($_GET['q']) ? $_GET['q'] : '';
             switch($q) {
                 case "":
-                    include "dashboard_waiter.php";
+                    include "order_waiter.php";
                     break;
                 case "profile":
                     include "profile_waiter.php";
