@@ -7,7 +7,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 // Check if the user is a manager
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'waiter') {
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 

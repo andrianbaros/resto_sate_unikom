@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "INSERT INTO users (id, username, password, role, picture) VALUES ('$id', '$username', '$hashed_password', '$role', '$target_file')";
 
             if ($conn->query($sql) === TRUE) {
-                header("Location: login.php");
+                header("Location: index.php");
                 exit();
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;

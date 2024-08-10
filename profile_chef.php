@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 } // Ensure session is started]
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'chef') {
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 
