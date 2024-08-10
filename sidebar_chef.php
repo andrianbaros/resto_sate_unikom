@@ -3,7 +3,7 @@ session_start();
 include 'db_connect.php';
 
 // Check if the user is a manager
-if (!isset($_SESSION['role']) || $_SESSION['role'] != 'manager') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] != 'chef') {
     header("Location: login.php");
     exit();
 }
@@ -39,7 +39,7 @@ $conn->close();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Manajer Dashboard</title>
+    <title>Chef Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style/sidebar-manajer.css">
@@ -69,11 +69,11 @@ $conn->close();
                 <span class="tooltip">Profile</span>
             </li>
             <li>
-                <a href="?q=dashboard">
+                <a href="?q=orderlist">
                     <i class="bx bx-line-chart"></i>
-                    <span class="nav-item">Dashboard</span>
+                    <span class="nav-item">Orderlist</span>
                 </a>
-                <span class="tooltip">Dashboard</span>
+                <span class="tooltip">Orderlist</span>
             </li>
             <li>
                 <a href="?q=menu">
@@ -83,25 +83,11 @@ $conn->close();
                 <span class="tooltip">Menu</span>
             </li>
             <li>
-                <a href="?q=history">
-                    <i class="bx bx-line-chart"></i>
-                    <span class="nav-item">History</span>
-                </a>
-                <span class="tooltip">History</span>
-            </li>
-            <li>
                 <a href="?q=stock">
                     <i class="bx bx-fridge"></i>
                     <span class="nav-item">Stock</span>
                 </a>
                 <span class="tooltip">Stock</span>
-            </li>
-            <li>
-                <a href="?q=manage">
-                    <i class="bx bxs-group"></i>
-                    <span class="nav-item">Manage</span>
-                </a>
-                <span class="tooltip">Manage Employees</span>
             </li>
              <li>
                 <a href="logout.php">
@@ -121,16 +107,13 @@ $conn->close();
                     include "dashboard_manajer.php";
                     break;
                 case "profile":
-                    include "profile_manajer.php";
+                    include "profile_chef.php";
                     break;
                 case "menu":
                     include "menu_manajer.php";
                     break;
-                case "dashboard":
-                    include "dashboard_manajer.php";
-                    break;
-                case "history":
-                    include "order_history.php";
+                case "orderlist":
+                    include "orderlist_chef.php";
                     break;
                 case "stock":
                     include "stock_manajer.php";

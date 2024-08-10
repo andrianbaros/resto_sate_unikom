@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $status = $_POST['status'];
 
     // Connect to the database
-    $conn = new mysqli('localhost', 'root', '', 'restaurant');
+    $conn = new mysqli('localhost', 'root', '', 'resto_sate');
 
     // Check connection
     if ($conn->connect_error) {

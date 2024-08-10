@@ -3,7 +3,7 @@ session_start();
 include 'db_connect.php';
 
 // Check if the user is a manager
-if (!isset($_SESSION['role']) || $_SESSION['role'] != 'manager') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] != 'cashier') {
     header("Location: login.php");
     exit();
 }
@@ -76,13 +76,6 @@ $conn->close();
                 <span class="tooltip">Dashboard</span>
             </li>
             <li>
-                <a href="?q=menu">
-                    <i class="bx bx-food-menu"></i>
-                    <span class="nav-item">Menu</span>
-                </a>
-                <span class="tooltip">Menu</span>
-            </li>
-            <li>
                 <a href="?q=history">
                     <i class="bx bx-line-chart"></i>
                     <span class="nav-item">History</span>
@@ -90,18 +83,11 @@ $conn->close();
                 <span class="tooltip">History</span>
             </li>
             <li>
-                <a href="?q=stock">
+                <a href="?q=kasir">
                     <i class="bx bx-fridge"></i>
-                    <span class="nav-item">Stock</span>
+                    <span class="nav-item">Kasir</span>
                 </a>
-                <span class="tooltip">Stock</span>
-            </li>
-            <li>
-                <a href="?q=manage">
-                    <i class="bx bxs-group"></i>
-                    <span class="nav-item">Manage</span>
-                </a>
-                <span class="tooltip">Manage Employees</span>
+                <span class="tooltip">Kasir</span>
             </li>
              <li>
                 <a href="logout.php">
@@ -132,8 +118,8 @@ $conn->close();
                 case "history":
                     include "order_history.php";
                     break;
-                case "stock":
-                    include "stock_manajer.php";
+                case "kasir":
+                    include "cashier.php";
                     break;
                 case "manage":
                     include "manage_employees.php";

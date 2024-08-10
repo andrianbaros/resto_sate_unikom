@@ -54,7 +54,7 @@
             background-color: #d4edda;
             color: #155724;
         }
-        .not-ready {
+        .occupied {
             background-color: #f8d7da;
             color: #721c24;
         }
@@ -105,20 +105,20 @@
                     let newStatus;
 
                     if (statusElement.classList.contains('ready')) {
-                        statusElement.textContent = 'Not Ready';
+                        statusElement.textContent = 'occupied';
                         statusElement.classList.remove('ready');
-                        statusElement.classList.add('not-ready');
-                        newStatus = 'not-ready';
+                        statusElement.classList.add('occupied');
+                        newStatus = 'occupied';
                     } else {
                         statusElement.textContent = 'Ready';
-                        statusElement.classList.remove('not-ready');
+                        statusElement.classList.remove('occupied');
                         statusElement.classList.add('ready');
                         newStatus = 'ready';
                     }
 
                     // Send AJAX request to update the status in the database
                     const xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'update_status.php', true);
+                    xhr.open('POST', 'update_statustable.php', true);
                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                     xhr.send(`id=${tableId}&status=${newStatus}`);
                 });

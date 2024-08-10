@@ -3,7 +3,7 @@ session_start();
 include 'db_connect.php';
 
 // Check if the user is a manager
-if (!isset($_SESSION['role']) || $_SESSION['role'] != 'manager') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] != 'waiter') {
     header("Location: login.php");
     exit();
 }
@@ -39,10 +39,10 @@ $conn->close();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Manajer Dashboard</title>
+    <title>Waiter Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style/sidebar-manajer.css">
+    <link rel="stylesheet" href="style/sidebar-waiter.css">
 </head>
 <body>
     <div class="sidebar">
@@ -57,7 +57,7 @@ $conn->close();
         <div class="user">
             <div>
                 <p class="bold"><?php echo htmlspecialchars($username); ?></p>
-                <p>as Manajer</p>
+                <p>as waiter</p>
             </div>  
         </div>
         <ul>
@@ -69,18 +69,11 @@ $conn->close();
                 <span class="tooltip">Profile</span>
             </li>
             <li>
-                <a href="?q=dashboard">
+                <a href="?q=order">
                     <i class="bx bx-line-chart"></i>
-                    <span class="nav-item">Dashboard</span>
+                    <span class="nav-item">Order</span>
                 </a>
-                <span class="tooltip">Dashboard</span>
-            </li>
-            <li>
-                <a href="?q=menu">
-                    <i class="bx bx-food-menu"></i>
-                    <span class="nav-item">Menu</span>
-                </a>
-                <span class="tooltip">Menu</span>
+                <span class="tooltip">Order</span>
             </li>
             <li>
                 <a href="?q=history">
@@ -90,18 +83,18 @@ $conn->close();
                 <span class="tooltip">History</span>
             </li>
             <li>
-                <a href="?q=stock">
-                    <i class="bx bx-fridge"></i>
-                    <span class="nav-item">Stock</span>
+                <a href="?q=menu">
+                    <i class="bx bx-food-menu"></i>
+                    <span class="nav-item">Menu</span>
                 </a>
-                <span class="tooltip">Stock</span>
+                <span class="tooltip">Menu</span>
             </li>
             <li>
-                <a href="?q=manage">
-                    <i class="bx bxs-group"></i>
-                    <span class="nav-item">Manage</span>
+                <a href="?q=table">
+                    <i class="bx bx-fridge"></i>
+                    <span class="nav-item">Table</span>
                 </a>
-                <span class="tooltip">Manage Employees</span>
+                <span class="tooltip">Update Table</span>
             </li>
              <li>
                 <a href="logout.php">
@@ -118,25 +111,22 @@ $conn->close();
         $q = isset($_GET['q']) ? $_GET['q'] : '';
             switch($q) {
                 case "":
-                    include "dashboard_manajer.php";
+                    include "dashboard_waiter.php";
                     break;
                 case "profile":
-                    include "profile_manajer.php";
+                    include "profile_waiter.php";
                     break;
                 case "menu":
-                    include "menu_manajer.php";
+                    include "menu_waiter.php";
                     break;
-                case "dashboard":
-                    include "dashboard_manajer.php";
+                case "order":
+                    include "order_waiter.php";
                     break;
                 case "history":
                     include "order_history.php";
                     break;
-                case "stock":
-                    include "stock_manajer.php";
-                    break;
-                case "manage":
-                    include "manage_employees.php";
+                case "table":
+                    include "table_waiter.php";
                     break;
                 // Anda dapat menambahkan case lain di sini jika diperlukan
                 default:

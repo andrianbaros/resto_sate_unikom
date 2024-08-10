@@ -47,6 +47,7 @@
     $username = "root";
     $password = "";
     $dbname = "resto_sate";
+    $target_dir = "image/";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 

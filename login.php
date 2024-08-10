@@ -21,13 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $role;
             switch ($role) {
                 case 'chef':
-                    header("Location: chef_dashboard.php");
+                    header("Location: sidebar_chef.php");
                     break;
                 case 'waiter':
-                    header("Location: waiters_dashboard.php");
+                    header("Location: sidebar_waiters.php");
                     break;
                 case 'cashier':
-                    header("Location: cashier_dashboard.php");
+                    header("Location: sidebar_cashier.php");
                     break;
                 case 'manager':
                     header("Location:sidebar_manajer.php");
