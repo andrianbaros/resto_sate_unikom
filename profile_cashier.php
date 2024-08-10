@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 } // Ensure session is started
 
 // Check if the user is a manager
-if (!isset($_SESSION['role']) || $_SESSION['role'] != 'waiter') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] != 'cashier') {
     header("Location: login.php");
     exit();
 }
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($stmt->execute()) {
-        header("Location: sidebar_waiters.php?q=profile"); // Refresh page to show updated data
+        header("Location: sidebar_cashier.php?q=profile"); // Refresh page to show updated data
         exit();
     } else {
         echo "Error: " . $stmt->error;
@@ -107,8 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manager Profile</title>
-    <link rel="stylesheet" href="style/manage.css"> 
+    <title>Cashier Profile</title>
+    <link rel="stylesheet" href="style/manage.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
         .password-container {
@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="profile-container">
             <h2>Profile Information</h2>
-            <form action="profile_waiter.php" method="post" enctype="multipart/form-data">
+            <form action="profile_cashier.php" method="post" enctype="multipart/form-data">
                 <div class="profile-picture">
                     <img src="<?php echo htmlspecialchars($picture); ?>" alt="Profile Picture" width="150">
                     <input type="file" name="picture" class="form-control mt-2">
