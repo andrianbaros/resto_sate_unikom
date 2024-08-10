@@ -27,15 +27,31 @@ CREATE TABLE IF NOT EXISTS `ingredients` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table resto_sate.ingredients: ~7 rows (approximately)
+-- Dumping data for table resto_sate.ingredients: ~23 rows (approximately)
 INSERT INTO `ingredients` (`id`, `name`, `stock`) VALUES
-	(1, 'kol', '5'),
-	(2, 'cabe', '20'),
-	(3, 'tahu', '60'),
-	(23, 'garlic', '10'),
-	(24, 'Nasi', '10'),
-	(25, 'Ayam', '2'),
-	(26, 'Cabe', '5');
+	(1, 'Bawang Merah', '5'),
+	(2, 'Bawang Putih', '5'),
+	(3, 'Cabe', '5'),
+	(4, 'Daun jeruk', '5'),
+	(5, 'Garam', '5'),
+	(6, 'Kecap Manis', '5'),
+	(7, 'Asam Jawa', '5'),
+	(8, 'Lada', '5'),
+	(9, 'Saos Kacang', '5'),
+	(10, 'Kemiri', '5'),
+	(11, 'Gula Merah', '5'),
+	(12, 'Air Jeruk Nipis', '5'),
+	(13, 'Merica', '5'),
+	(14, 'Ketumbar', '5'),
+	(15, 'Bubuk Teh', '5'),
+	(16, 'Gula', '5'),
+	(17, 'Es', '5'),
+	(18, 'Lemon', '5'),
+	(19, 'Bubuk Green Tea', '5'),
+	(20, 'Creamer', '5'),
+	(21, 'Susu', '5'),
+	(22, 'Air', '5'),
+	(23, 'Bubuk Coklat', '5');
 
 -- Dumping structure for table resto_sate.menu_items
 CREATE TABLE IF NOT EXISTS `menu_items` (
@@ -125,13 +141,18 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table resto_sate.recipes: ~5 rows (approximately)
+-- Dumping data for table resto_sate.recipes: ~10 rows (approximately)
 INSERT INTO `recipes` (`id`, `name`, `image`, `price`, `category`) VALUES
-	(1, 'Nasi Padang', 'image/nasipadang.png', 50000, 'makanan'),
-	(2, 'Ayam Goreng', 'image/ayamgoreng.png', 50000, 'makanan'),
-	(3, 'Mie Ayam', 'image/ayamgoreng.png', 50000, 'makanan'),
-	(4, 'Tuyul Goreng', 'image/ayamgoreng.png', 50000, 'minuman'),
-	(5, 'Bakmie', 'image/ayamgoreng.png', 50000, 'minuman');
+	(1, 'Sate Padang', 'image/makanan/sate padang.png', 35000, 'makanan'),
+	(2, 'Sate Maranggi', 'image/makanan/sate maranggi.jpg', 30000, 'makanan'),
+	(3, 'Sate Madura', 'image/makanan/sate madura.png', 25000, 'makanan'),
+	(4, 'Sate Jando', 'image/makanan/sate jando.jpeg', 25000, 'makanan'),
+	(5, 'Sate Taichan', 'image/makanan/sate taichan.jpg', 30000, 'makanan'),
+	(6, 'Es Teh', 'image/makanan/es teh.jpg', 10000, 'minuman'),
+	(7, 'Lemon Tea', 'image/makanan/Lemon Tea.jpg', 10000, 'minuman'),
+	(8, 'Green Tea', 'image/makanan/Green Tea.jpeg', 15000, 'minuman'),
+	(9, 'Air Mineral', 'image/makanan/air mineral.png', 5000, 'minuman'),
+	(10, 'Es Coklat', 'image/makanan/es coklat.png', 15000, 'minuman');
 
 -- Dumping structure for table resto_sate.recipe_ingredients
 CREATE TABLE IF NOT EXISTS `recipe_ingredients` (
@@ -144,14 +165,47 @@ CREATE TABLE IF NOT EXISTS `recipe_ingredients` (
   CONSTRAINT `recipe_ingredients_ibfk_2` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table resto_sate.recipe_ingredients: ~6 rows (approximately)
+-- Dumping data for table resto_sate.recipe_ingredients: ~39 rows (approximately)
 INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `quantity`) VALUES
-	(1, 1, 3),
-	(1, 2, 2),
-	(1, 3, 6),
-	(2, 26, 1),
-	(3, 23, 35),
-	(4, 23, 35);
+	(1, 1, 25),
+	(1, 2, 25),
+	(1, 3, 10),
+	(1, 4, 2),
+	(1, 5, 3),
+	(2, 5, 4),
+	(2, 6, 25),
+	(2, 7, 15),
+	(2, 8, 4),
+	(3, 3, 10),
+	(3, 5, 5),
+	(3, 6, 15),
+	(3, 9, 25),
+	(3, 10, 5),
+	(3, 11, 10),
+	(4, 1, 5),
+	(4, 2, 8),
+	(4, 5, 5),
+	(4, 11, 5),
+	(4, 14, 5),
+	(5, 2, 10),
+	(5, 3, 10),
+	(5, 5, 5),
+	(5, 12, 15),
+	(5, 13, 5),
+	(6, 15, 15),
+	(6, 16, 5),
+	(6, 17, 10),
+	(7, 15, 10),
+	(7, 16, 5),
+	(7, 18, 15),
+	(8, 19, 15),
+	(8, 20, 5),
+	(8, 21, 10),
+	(8, 22, 10),
+	(9, 22, 10),
+	(10, 20, 5),
+	(10, 21, 20),
+	(10, 23, 15);
 
 -- Dumping structure for table resto_sate.tables
 CREATE TABLE IF NOT EXISTS `tables` (
@@ -182,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table resto_sate.users: ~6 rows (approximately)
+-- Dumping data for table resto_sate.users: ~7 rows (approximately)
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `picture`) VALUES
 	('CA00001', 'kasir', '$2y$10$C6c1fvbfmBQox7PKgYaJXO29W4JTg7EY2eqYWxdPTjRRuOhvos1pG', 'cashier', 'image/Screenshot 2024-07-25 204512.png'),
 	('CH00001', 'chef', '$2y$10$lwb8H8JzIU0mzvEp/iMBoeZhKJQfl5jVBGPYLvIvECNLFgGs/J4Cm', 'chef', ''),
