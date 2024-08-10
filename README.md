@@ -3,16 +3,21 @@ Repository ini berisi proyek Tugas Besar Rekayasa Perangkat Lunak 1, yang dikerj
 
 Proyek ini adalah aplikasi web untuk restoran sate yang dirancang untuk memenuhi kebutuhan manajer, chef, pelayan (waiter), dan kasir. Aplikasi ini dibangun menggunakan PHP dan mencakup berbagai fitur yang diperlukan untuk mengelola operasional restoran secara efisien.
 
+Proyek ini bisa dibuka melalui https://resto-sate-unikom.my.id/. Perlu diperhatikan bahwa database telah diubah sehingga tidak bisa dijalankan secara lokal.
+
 ## Fitur
 
 1. **Manajer**
-   - Melihat laporan penjualan
    - Mengelola menu
+   - Mengelola bahan
    - Mengelola staf
+   - Melihat riwayat transaksi
+
 
 2. **Chef**
    - Melihat pesanan yang masuk
    - Mengupdate status pesanan
+   - Mengelola bahan
 
 3. **Waiter**
    - Mencatat pesanan pelanggan
@@ -21,33 +26,3 @@ Proyek ini adalah aplikasi web untuk restoran sate yang dirancang untuk memenuhi
 4. **Kasir**
    - Memproses pembayaran
    - Melihat riwayat transaksi
-
-## Instalasi
-
-1. Clone repositori ini:
-   ```bash
-   git clone https://github.com/andrianbaros/resto_sate_unikom.git
-
-2. Masuk ke direktori proyek:
-bash
-Copy code
-cd resto_sate_unikom
-
-3. Buat database baru dan impor file resto_sate.sql yang terletak di direktori sql:
-sql
-Copy code
-CREATE DATABASE resto_sate;
-USE resto_sate;
-SOURCE path/to/resto_sate.sql;
-
-4. Konfigurasi file config.php dengan detail database Anda:
-php
-Copy code
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "resto_sate";
-?>
-
-5. Jalankan server lokal menggunakan XAMPP atau alat serupa.
