@@ -100,10 +100,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['pesan'])) {
     </style>
 </head>
 <body>
-    <div class="container bg-body-tertiary">
-        <form class="border border-warning rounded mt-5 p-4" method="POST" action="">
+    <div class="container bg-body-tertiary my-5 d-flex justify-content-center align-items-center">
+        <form class="border border-warning rounded mt-5 p-4 my-5 " method="POST" action="">
             <div class="text-center bg-warning p-2 mb-4">
-                <h2>CAFE MENU</h2>
+                <h2>MENU</h2>
             </div>
 
             <?php
