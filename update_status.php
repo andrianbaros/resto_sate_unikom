@@ -1,6 +1,7 @@
 <?php
 // Connect to the database
-$conn = new mysqli('localhost', 'root', '', 'resto_sate');
+$conn = new mysqli('localhost', 'wheramye_unikom', 'YYRJ%5.]QD#Z', 'wheramye_resto_sate');
+
 
 // Check connection
 if ($conn->connect_error) {

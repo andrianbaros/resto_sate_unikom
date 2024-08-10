@@ -107,7 +107,7 @@ $conn->close();
                     include "dashboard_manajer.php";
                     break;
                 case "profile":
-                    include "profile_cashier.php";
+                    include "profile_manajer.php";
                     break;
                 case "menu":
                     include "menu_manajer.php";
