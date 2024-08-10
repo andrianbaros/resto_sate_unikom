@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($stmt->execute()) {
-        header("Location: sidebar_manajer.php?q=profile"); // Refresh page to show updated data
+        header("Location: sidebar_waiter.php?q=profile"); // Refresh page to show updated data
         exit();
     } else {
         echo "Error: " . $stmt->error;
@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="profile-container">
             <h2>Profile Information</h2>
-            <form action="profile_manajer.php" method="post" enctype="multipart/form-data">
+            <form action="profile_waiter.php" method="post" enctype="multipart/form-data">
                 <div class="profile-picture">
                     <img src="<?php echo htmlspecialchars($picture); ?>" alt="Profile Picture" width="150">
                     <input type="file" name="picture" class="form-control mt-2">
